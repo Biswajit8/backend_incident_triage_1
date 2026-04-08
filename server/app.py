@@ -54,11 +54,28 @@ app = create_app(
 
 
 def main(host: str = "0.0.0.0", port: int = 8000):
+    """
+    Entry point for direct execution via uv run or python -m.
+
+    This function enables running the server without Docker:
+        uv run --project . server
+        uv run --project . server --port 8001
+        python -m first_rl_demo.server.app
+
+    Args:
+        host: Host address to bind to (default: "0.0.0.0")
+        port: Port number to listen on (default: 8000)
+
+    For production deployments, consider using uvicorn directly with
+    multiple workers:
+        uvicorn first_rl_demo.server.app:app --workers 4
+    """
     import uvicorn
-    uvicorn.run("server.app:app", host=host, port=port)
+
+    uvicorn.run(app, host=host, port=port)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
