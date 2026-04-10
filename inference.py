@@ -194,7 +194,8 @@ async def main() -> None:
 
         info = getattr(last_obs, "info", {}) or {}
         raw_score = info.get("score", sum(rewards))
-        score = max(0.0, min(1.0, float(raw_score)))
+        # Ensure score is strictly between 0 and 1 (not exactly 0.0 or 1.0)
+        score = max(0.01, min(0.99, float(raw_score)))
         success = score >= SUCCESS_SCORE_THRESHOLD
 
     finally:

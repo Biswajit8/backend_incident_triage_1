@@ -5,3 +5,27 @@ runtime: fastapi
 app: server.app:app
 port: 8000
 
+tasks:
+  - name: easy
+    difficulty: easy
+    description: "Generate messages of varying lengths to maximize total reward. Reward is based on message length."
+    grader:
+      type: score_range
+      min_score: 0.3
+      max_score: 0.9
+
+  - name: medium
+    difficulty: medium
+    description: "Generate substantive messages while maintaining quality. Must achieve moderate length messages consistently."
+    grader:
+      type: score_range
+      min_score: 0.4
+      max_score: 0.95
+
+  - name: hard
+    difficulty: hard
+    description: "Generate high-quality, lengthy messages across multiple steps. Must achieve strong reward signals consistently."
+    grader:
+      type: score_range
+      min_score: 0.5
+      max_score: 0.99
